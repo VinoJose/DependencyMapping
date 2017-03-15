@@ -296,7 +296,12 @@ function Main {
     #Checking and output path and creating it if not exists
     Write-Verbose "Checking and output path and creating it if not exists"
     if (!(Test-Path $Table.Outputpath)) {
-        $null= mkdir $Table.Outputpath -Force
+        Try {
+            $null= mkdir $Table.Outputpath -Force -ErrorAction Stop
+        }
+        Catch {
+            Throw "Can't create directory specified in the input file. Please check the path given is valid. Error message : $_"
+        }
     }
 
     #Checking the diskspace avaliable in the drive where outputfile is generated.
