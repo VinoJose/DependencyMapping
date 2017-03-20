@@ -1,0 +1,76 @@
+To create a New database
+create database <DBname>;
+
+To grant new database access to an user with password (same as root user with all options for all db)
+grant all privileges on *.* to user identified by password with grant option
+
+to specific db on localhost
+grant all privileges on dbname.* to 'user'@'localhost' identified by 'password';
+
+to specific db from remote
+grant all privileges on dbname.* to 'user'@'%' identified by 'password';
+
+to switch to database
+use dbname
+
+to list all databases
+show database
+
+to create table
+create table tablename (field datatype,
+field2 datatype);
+
+example
+create table employee(ename varchar(40),
+eid integer(10),
+primary key (eid));
+
+to insert values
+insert into employee values('alpha', 123);
+
+to insert multiple values
+insert into employee(ename, eid) values ('beta', 234), ('gamma', 212), ('delta', 111);
+
+to insert from a file
+load data infile 'filename' into tablename fields terminated by ',' lines terminated by '\n';
+
+to list all contents
+select * from table
+
+to list content based on condition
+select * from table where eid > 100; //list all rows
+select ename from employee where eid =234; //list only ename
+
+to delete
+delete from table where eid=123;
+
+to update a column
+update table set ename='sinha' where eid=212;
+
+to alter a table datatype
+alter table tablename modify column_name datatype
+
+to add new column
+alter table tablename add column_name datatype
+
+example
+alter table employee add salary int;
+
+to remove a column
+alter table tablename drop column_name
+
+
+to delete a table
+
+drop table tablename; //removes completely
+truncate table tablename; //retains structure
+delete table tablename where condition //deletes based on condition
+
+to remove a database
+drop database dbname
+
+
+to see the structure/skeleton of a table
+desc table_name;
+or
+show create table table_name;
